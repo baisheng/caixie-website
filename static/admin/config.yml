@@ -39,21 +39,24 @@ collections:
             name: "header"
             widget: object
             fields:
-              - {label: Header, name: header, wiget: string}
-              - {label: Body, name: body, wiget: markdown}
+              - {label: Header, name: header, widget: string}
+              - {label: Body, name: body, widget: markdown}
           - label: "Banner Image"
             name: "image"
+            fields:
+              - {label: 图片, name: image, widget: image}
+              - {label: 描述, name: alt, widgte: string}
             widget: image
           - label: "Stats"
             name: "Stats"
             widget: object
             fields:
-              - {label: "Stat1Label", name: "stat1LabelHtml"}
-              - {label: "Stat1Value", name: "stat1Value"}
-              - {label: "Stat2Label", name: "stat2LabelHtml"}
-              - {label: "Stat2Value", name: "stat2Value"}
-              - {label: "Stat3Label", name: "stat3LabelHtml"}
-              - {label: "Stat3Value", name: "stat3Value"}
+              - {label: "Stat1Label", name: "stat1LabelHtml", widget: markdown}
+              - {label: "Stat1Value", name: "stat1Value", widget: string}
+              - {label: "Stat2Label", name: "stat2LabelHtml", widget: markdown}
+              - {label: "Stat2Value", name: "stat2Value", widget: string}
+              - {label: "Stat3Label", name: "stat3LabelHtml", widget: markdown}
+              - {label: "Stat3Value", name: "stat3Value", widget: string}
           - label: "ImageGrid"
             name: "imagegrid"
             widget: object
