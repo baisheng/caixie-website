@@ -2,52 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ce1e689-946e-4be1-8654-f018a784a261" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/postcss.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/AnimatedArrow/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Arrow/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Arrow/styles.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Brush/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Brush/styles.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/styles.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/styles.module.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Insight/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Insight/styles.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Layout/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Layout/styles.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Link/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Nav/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Nav/styles.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Section/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Section/styles.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Transition/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/tailwind.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helper/transitionElement.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helper/transitionWrapper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helper/wrapPageElement.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/img/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/img/brush1.svg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/img/categries.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/img/cursor.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/img/dragcursor.svg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/img/logo-full.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/feature-check.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/media-query.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/404.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/global.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/index.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/variables.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gatsby-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/gatsby-config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/all.sass" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/index-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/index-page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/admin/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/static/admin/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +55,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565746600677</updated>
-      <workItem from="1565746601789" duration="12963000" />
+      <workItem from="1565746601789" duration="13568000" />
     </task>
     <servers />
   </component>
