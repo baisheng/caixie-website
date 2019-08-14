@@ -67,5 +67,11 @@ main:
   image3:
     alt: Coffee beans
     image: /img/products-grid1.jpg
+sections:
+  - header: 标题001
+    images:
+      - /img/chemex.jpg
+    template: carousel
+    type: carousel
 ---
 
