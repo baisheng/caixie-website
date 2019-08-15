@@ -30,8 +30,8 @@ collections:
       - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
-  - name: "project"
-    label: "项目案例"
+  - name: "项目案例"
+    label: "project"
     folder: "src/pages/project"
     create: true
     slug: "{{slug}}"
