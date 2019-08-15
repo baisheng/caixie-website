@@ -20,6 +20,8 @@ sections:
     frameColor: '#202429'
     images:
       - /img/mpcast-1.png
+      - /img/mpcast-2.png
+      - /img/mpcast-3.png
     staggered: true
     staggeredCopyHtml: >-
       <h2> 清晰明快的 <span style=\"color:
