@@ -38,7 +38,6 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "project"}
       - {label: "排序", name: "sort", widget: "number", required: false}
-      - {label: "slug", name: "slug", widget: "string"}
       - {label: "标题", name: "title", widget: "string"}
       - {label: "副标题", name: "subtitle", widget: "string"}
       - {label: "摘要", name: "summary", widget: "string"}
