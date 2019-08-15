@@ -78,12 +78,12 @@ export default () => (
     <section className={styles.internet}>
       <h3>社交网络</h3>
       <ul>
-        <li><OutboundLink href="https://twitter.com/plntary">Twitter</OutboundLink></li>
-        <li><OutboundLink href="https://instagram.com/planetarycorp">Instagram</OutboundLink></li>
+        {/*<li><OutboundLink href="https://twitter.com/plntary">Twitter</OutboundLink></li>*/}
+        {/*<li><OutboundLink href="https://instagram.com/planetarycorp">Instagram</OutboundLink></li>*/}
       </ul>
     </section>
     <section className={styles.logo}>
-      <Logo title="Planetary" />
+      {/*<Logo title="Planetary" />*/}
     </section>
 
 {/*    <section className={styles.address}>

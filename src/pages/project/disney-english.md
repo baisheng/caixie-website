@@ -8,7 +8,7 @@ summary: 迪士尼英语 app 重新设计
 primaryColor: "#006BC2"
 
 hero:
-  publicURL: /img/project-disney_hero.png
+  publicURL: /img/project-disneyEnglish-example-1px.jpg
   
 workType: [
     "产品策划",
@@ -27,9 +27,6 @@ sections:
       stat2Value: 2 wks
       stat3LabelHtml: "<p><strong>Multi-platform components </strong>(work across both web and native mobile) built</p>"
       stat3Value: 5+
-    - type: image
-      alt: mpcast
-      image: /img/mpcast-style-0.png
     - type: text
       header: 执行方案
       body: "<p>我们要用最简洁的交互来管理复杂的内容，也要要用最明快的界面体现出最便捷的的交互，轻量级的小程序移动端是最轻便的播客应用。</p>"
@@ -40,80 +37,21 @@ sections:
       staggeredCopyHtml: "<h2> 清晰明快的 <span style=\"color: #ab2b94\">入口</span></h2>\n<p>入口页清晰的版块划分与交互让用户快速定位资源</p>\n"
       staggeredStart: right
       images:
-        - "/img/mpcast-1.png"
-        - "/img/mpcast-2.png"
-        - "/img/mpcast-3.png"
+        - "/img/project-disneyEnglish-1.png"
+        - "/img/project-disneyEnglish-2.png"
+        - "/img/project-disneyEnglish-3.png"
     - type: imagegrid
       frameColor: "#202429"
       staggered: true
       staggeredCopyHtml: "<h2>Univision <span style=\"color: #00c473\">Deportes</span></h2>\n<p>Univision's most popular mobile app, serving live streams of soccer games, live scores, leaderboards, replays, and sports news.</p>\n"
       staggeredStart: "left"
       images:
-        - "/img/mpcast-4.png"
-        - "/img/mpcast-5.png"
-        - "/img/mpcast-6.png"
-    - type: imagegrid
-      frameColor: "#202429"
-      staggered: true
-      staggeredCopyHtml: "<h2>Univision <span style=\"color: #00c473\">Deportes</span></h2>\n<p>Univision's most popular mobile app, serving live streams of soccer games, live scores, leaderboards, replays, and sports news.</p>\n"
-      staggeredStart: "right"
-      images:
-        - "/img/mpcast-8.png"
-        - "/img/mpcast-9.png"
-        - "/img/mpcast-16.png"
-    - type: imagegrid
-      frameColor: "#202429"
-      staggered: true
-      staggeredCopyHtml: "<h2>Univision <span style=\"color: #00c473\">Deportes</span></h2>\n<p>Univision's most popular mobile app, serving live streams of soccer games, live scores, leaderboards, replays, and sports news.</p>\n"
-      staggeredStart: "left"
-      images:
-        - "/img/mpcast-10.png"
-        - "/img/mpcast-11.png"
-        - "/img/mpcast-12.png"
-    - type: imagegrid
-      frameColor: "#202429"
-      staggered: true
-      staggeredCopyHtml: "<h2>Univision <span style=\"color: #00c473\">Deportes</span></h2>\n<p>Univision's most popular mobile app, serving live streams of soccer games, live scores, leaderboards, replays, and sports news.</p>\n"
-      staggeredStart: "right"
-      images:
-        - "/img/mpcast-13.png"
-        - "/img/mpcast-14.png"
-        - "/img/mpcast-15.png"        
+        - "/img/project-disneyEnglish-iphone-2.png"
+        - "/img/project-disneyEnglish_iPhone.png"
+        - "/img/project-disneyEnglish-iphone-3.png"
     - type: imagegrid
       columns: 1
       images:
-        - "/img/mpcast-admin-1.png"
-        - "/img/mpcast-admin-2.png"
+        - "/img/project-disneyEnglish-iphone-view.jpg"
 ---
 
-This page has front matter that should be parsed before the sections.
-
-This is an excerpt.
----
-
----aaa
-type: showme
-title: First section
----
-
-Section one.
-
----bbb
-title: Second section
----
-
-Part 1.
-
----
-
-Part 2.
-
----
-
-Part 3.
-
----ccc
-title: Third section
----
-
-Section three.

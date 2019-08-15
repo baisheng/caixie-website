@@ -2,52 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ce1e689-946e-4be1-8654-f018a784a261" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/project/cms.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/project/disney-english.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-cms_case.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-cms_cover.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-cms_cover.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-cms_macbook.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-cms_picker1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-cms_picker2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-cms_picker3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-cms_stack.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-cms_team1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-cms_team2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-cms_team3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/project-disney_hero.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/about.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/about/styles.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/contact-bak/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/contact/styles.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/project/facial.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/project/pinyin.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/project/vrlab.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-disneyEnglish-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-disneyEnglish-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-disneyEnglish-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-disneyEnglish-example-1px.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-disneyEnglish-featured.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-disneyEnglish-iphone-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-disneyEnglish-iphone-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-disneyEnglish-iphone-view.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-disneyEnglish_iPhone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-facial-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-facial-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-facial-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-facial-featured.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-facial_macbook.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-pinyin-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-pinyin_admin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-pinyin_h5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-vrlab-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-vrlab-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-vrlab-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-vrlab-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/project-vrlab-featured.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Pricing.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Testimonials.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/project/mpcast.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/project/mpcast.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/project/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/project/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/project/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/project/styles.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/admin/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/static/admin/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-14.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-15.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-admin-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-admin-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-hero.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/mpcast-style-0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/404.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/404.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/about/index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contact/examples.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contact-bak/examples.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contact/file-upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contact-bak/file-upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contact/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contact/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contact/thanks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contact-bak/thanks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/project/disney-english.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/project/disney-english.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +56,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -75,11 +69,11 @@
       <recent name="$PROJECT_DIR$/src/styles" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages" />
+      <recent name="$PROJECT_DIR$/src/pages/about" />
       <recent name="$PROJECT_DIR$/static/img" />
       <recent name="$PROJECT_DIR$/src/pages/project" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/static" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -104,7 +98,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565746600677</updated>
-      <workItem from="1565746601789" duration="58037000" />
+      <workItem from="1565746601789" duration="60881000" />
     </task>
     <servers />
   </component>
