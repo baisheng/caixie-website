@@ -30,9 +30,9 @@ collections:
       - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
-  - name: "projects"
+  - name: "project"
     label: "项目案例"
-    folder: "src/pages/projects"
+    folder: "src/pages/project"
     create: true
     slug: "{{slug}}"
     fields:
@@ -53,9 +53,9 @@ collections:
             name: "text"
             widget: object
             fields:
-              - {label: 标题, name: header, widget: string}
+              - {label: 标题, name: header, widget: string, required: false}
               - {label: 主内容, name: body, widget: markdown}
-              - {label: 次要内容, name: bodySecondary, widget: markdown}
+              - {label: 次要内容, name: bodySecondary, widget: markdown, required: false}
           - label: "引用"
             name: "quote"
             widget: object
@@ -67,7 +67,7 @@ collections:
             widget: object
             fields:
               - {label: 图片, name: image, widget: image}
-              - {label: 描述, name: alt, widgte: string}
+              - {label: 描述, name: alt, widgte: string, required: false}
           - label: "统计数据"
             name: "stats"
             widget: object
