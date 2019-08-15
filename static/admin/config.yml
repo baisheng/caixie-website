@@ -10,7 +10,7 @@ collections:
     folder: "src/pages/author"
     create: true
     slug: "{{slug}}"
-    identifier_field: name
+    identifier_field: author
     fields:
       - {label: "作者", name: author, widget: string}
       - {label: "头像", name: authorImage, widget: image}
