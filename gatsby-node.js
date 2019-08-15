@@ -211,12 +211,17 @@ exports.onCreateNode = async ({node, actions, getNode, createContentDigest}) => 
         }
         delete node.frontmatter.sections
         fmImagesToRelative(node) // convert image paths for gatsby images
+        // createNodeField({
+        //     node,
+        //     name: `slug`,
+        //     value: templateKey === "project" || templateKey === "insight" ? templateKey + slug : slug,
+        // })
+        const value = createFilePath({ node, getNode })
         createNodeField({
-            node,
             name: `slug`,
-            value: templateKey === "project" || templateKey === "insight" ? templateKey + slug : slug,
+            node,
+            value,
         })
-
         createNodeField({
             node,
             name: "isPublic",

@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import PropTypes from "prop-types"
 import classnames from "classnames"
 import anime from "animejs"
-import { withWindowSizeListener } from "react-window-size-listener"
+import { withWindowSizeListener } from "lib/window-size-listener"
 
 import Link from "../Link"
 import { lteSmallViewport } from "../../lib/media-query"

@@ -28,37 +28,37 @@ import ImageGrid from './modules/ImageGrid';
 import styles from "./styles.module.css"
 
 const modules = {
-  text: Text,
-  stats: Stats,
-  // quote: Quote,
-  // carousel: Carousel,
-  image: Image,
-  imagegrid: ImageGrid,
-  // styleguide: StyleGuide,
+    text: Text,
+    stats: Stats,
+    // quote: Quote,
+    // carousel: Carousel,
+    image: Image,
+    imagegrid: ImageGrid,
+    // styleguide: StyleGuide,
 }
 
 const ProjectTemplate = ({
-                           primaryColor,
-                           sections,
+                             primaryColor,
+                             sections,
                          }) => (
-  <Fragment>
-    <div className={classnames(styles.container, "fullWidth")}>
-      <div className={styles.content}>
-        {sections.map((section, idx) => (
-          modules[section.type]
-            ? React.createElement(modules[section.type], {
-              ...section,
-              primaryColor,
-              className: styles.section,
-              key: `${section.type}-${idx}`,
-            })
-            : (<span key={`unknown-${idx}`}/>)
-        ))}
-      </div>
-    </div>
+    <Fragment>
+        <div className={classnames(styles.container, "fullWidth")}>
+            <div className={styles.content}>
+                {sections.map((section, idx) => (
+                    modules[section.type]
+                        ? React.createElement(modules[section.type], {
+                            ...section,
+                            primaryColor,
+                            className: styles.section,
+                            key: `${section.type}-${idx}`,
+                        })
+                        : (<span key={`unknown-${idx}`}/>)
+                ))}
+            </div>
+        </div>
 
-    {/* SVG for list bullets */}
-    {/*    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style={{display: 'none'}}>
+        {/* SVG for list bullets */}
+        {/*    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style={{display: 'none'}}>
       <symbol viewBox="0 0 11 16" id="bullet">
         <g transform="translate(1, -9)" fillRule="nonzero">
           <path
@@ -77,129 +77,129 @@ const ProjectTemplate = ({
         </g>
       </symbol>
     </svg>*/}
-  </Fragment>
+    </Fragment>
 )
 
 ProjectTemplate.propTypes = {
-  primaryColor: PropTypes.string.isRequired,
-  sections: PropTypes.array.isRequired,
+    primaryColor: PropTypes.string.isRequired,
+    sections: PropTypes.array.isRequired,
 }
 
 export { ProjectTemplate }
 
 class Project extends Component {
-  static propTypes = {
-    data: PropTypes.object.isRequired,
-    transitionStatus: PropTypes.string.isRequired,
-  }
+    static propTypes = {
+        data: PropTypes.object.isRequired,
+        transitionStatus: PropTypes.string.isRequired,
+    }
 
-  state = {
-    hideHeader: false,
-    entered: false,
-    useApngFallback: false,
-  }
+    state = {
+        hideHeader: false,
+        entered: false,
+        useApngFallback: false,
+    }
 
-  constructor(props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    if (typeof window !== "undefined") {
-      supportsWebMAlpha((isSupported) => {
-        if (!isSupported) {
-          if (this.hasMounted) {
-            this.setState({ useApngFallback: true })
-          } else {
-            this.state = { ...this.state, useApngFallback: true }
-          }
+        if (typeof window !== "undefined") {
+            supportsWebMAlpha((isSupported) => {
+                if (!isSupported) {
+                    if (this.hasMounted) {
+                        this.setState({ useApngFallback: true })
+                    } else {
+                        this.state = { ...this.state, useApngFallback: true }
+                    }
+                }
+            })
         }
-      })
     }
-  }
 
-  componentDidMount() {
-    this.hasMounted = true
+    componentDidMount() {
+        this.hasMounted = true
 
-    this.observer = new IntersectionObserver((entries) => {
-      const entry = entries[0]
+        this.observer = new IntersectionObserver((entries) => {
+            const entry = entries[0]
 
-      // if (
-      //   entry.intersectionRatio === 0
-      //   && !this.hero.isContinuous
-      //   && this.hero.reset
-      // ) {
-      //   this.hero.reset();
-      // }
+            // if (
+            //   entry.intersectionRatio === 0
+            //   && !this.hero.isContinuous
+            //   && this.hero.reset
+            // ) {
+            //   this.hero.reset();
+            // }
 
-      // if (entry.intersectionRatio >= 0.6
-      //   && this.hero
-      //   && !this.hero.isContinuous
-      //   && this.hero.replay
-      // ) {
-      //   this.hero.replay();
-      // }
-    }, { threshold: [0, 0.6] })
+            // if (entry.intersectionRatio >= 0.6
+            //   && this.hero
+            //   && !this.hero.isContinuous
+            //   && this.hero.replay
+            // ) {
+            //   this.hero.replay();
+            // }
+        }, { threshold: [0, 0.6] })
 
-    this.observer.observe(this.header)
+        this.observer.observe(this.header)
 
-    this.setState({ entered: true })
-  }
-
-  componentDidUpdate(prevProps) {
-    const { transitionStatus: prevTransitionStatus } = prevProps
-    const { transitionStatus } = this.props
-
-    if (prevTransitionStatus !== transitionStatus
-      && ["exiting", "exited"].includes(transitionStatus)
-    ) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ entered: false })
+        this.setState({ entered: true })
     }
-  }
 
-  componentWillUnmount() {
-    this.setState({ entered: false })
-    this.observer.disconnect()
-  }
+    componentDidUpdate(prevProps) {
+        const { transitionStatus: prevTransitionStatus } = prevProps
+        const { transitionStatus } = this.props
 
-  onHeroVisibilityChange = (visible) => {
-    this.setState({ hideHeader: !visible })
-  }
+        if (prevTransitionStatus !== transitionStatus
+            && ["exiting", "exited"].includes(transitionStatus)
+        ) {
+            // eslint-disable-next-line react/no-did-update-set-state
+            this.setState({ entered: false })
+        }
+    }
 
-  render() {
-    const {
-      data: { project, next },
-      transitionStatus,
-    } = this.props
-    const { hideHeader, entered, useApngFallback } = this.state
-    const { title, workType } = project.frontmatter
+    componentWillUnmount() {
+        this.setState({ entered: false })
+        this.observer.disconnect()
+    }
 
-    // const heroName = title.match(/[a-z0-9]+/gi)
-    //   .map(word => word.charAt(0).toUpperCase() + word.substr(1).toLowerCase())
-    //   .join('');
+    onHeroVisibilityChange = (visible) => {
+        this.setState({ hideHeader: !visible })
+    }
 
-    return (
-      <Layout
-        light
-        key={`apng-${useApngFallback}`}
-        contentBefore={(
-          <div
-            style={{
-              display: hideHeader ? "none" : "block",
-              maxHeight: typeof window !== "undefined" ? window.innerHeight : "",
-              backgroundColor: project.frontmatter.primaryColor,
-            }}
-            className={classnames(
-              styles.hero,
-              "fullWidth",
-              entered && styles.entered,
-            )}
-          >
-            <div
-              className={classnames(
-                styles.heroVisual,
-                entered && styles.entered,
-              )}
-            >
-              {/*            {Heroes[heroName] && React.createElement(
+    render() {
+        const {
+            data: { project, next },
+            transitionStatus,
+        } = this.props
+        const { hideHeader, entered, useApngFallback } = this.state
+        const { title, workType } = project.frontmatter
+
+        // const heroName = title.match(/[a-z0-9]+/gi)
+        //   .map(word => word.charAt(0).toUpperCase() + word.substr(1).toLowerCase())
+        //   .join('');
+
+        return (
+            <Layout
+                light
+                key={`apng-${useApngFallback}`}
+                contentBefore={(
+                    <div
+                        style={{
+                            display: hideHeader ? "none" : "block",
+                            maxHeight: typeof window !== "undefined" ? window.innerHeight : "",
+                            backgroundColor: project.frontmatter.primaryColor,
+                        }}
+                        className={classnames(
+                            styles.hero,
+                            "fullWidth",
+                            entered && styles.entered,
+                        )}
+                    >
+                        <div
+                            className={classnames(
+                                styles.heroVisual,
+                                entered && styles.entered,
+                            )}
+                        >
+                            {/*            {Heroes[heroName] && React.createElement(
                 Heroes[heroName],
                 {
                   ref: (hero) => {
@@ -209,50 +209,50 @@ class Project extends Component {
                   useApngFallback,
                 },
               )}*/}
-            </div>
-            <div
-              className={classnames(
-                styles.heroWrap,
-                entered && styles.entered,
-              )}
+                        </div>
+                        <div
+                            className={classnames(
+                                styles.heroWrap,
+                                entered && styles.entered,
+                            )}
+                        >
+                            <h1><span>{title}</span></h1>
+                            <ul className={styles.workType}>
+                                {workType.map((type, idx) => <li key={`type${idx}`}><span>{type}</span></li>)}
+                            </ul>
+                        </div>
+                    </div>
+                )}
+                outerClassName={styles.outer}
+                transitionStatus={transitionStatus}
             >
-              <h1><span>{title}</span></h1>
-              <ul className={styles.workType}>
-                {workType.map((type, idx) => <li key={`type${idx}`}><span>{type}</span></li>)}
-              </ul>
-            </div>
-          </div>
-        )}
-        outerClassName={styles.outer}
-        transitionStatus={transitionStatus}
-      >
-        {/*        <SEO
+                {/*        <SEO
           title={project.frontmatter.title}
           description={project.frontmatter.summary}
           ogImage={project.frontmatter.hero.childImageSharp.fluid.src}
         />*/}
-        <VisibilitySensor partialVisibility resizeCheck onChange={this.onHeroVisibilityChange}>
-          <div
-            className={styles.heroFill}
-            ref={(header) => {
-              this.header = header
-            }}
-          />
-        </VisibilitySensor>
-        <ProjectTemplate
-          {...project.frontmatter}
-          content={project.html}
-          sections={project.sections}
-        />
-        <div className={styles.next}>
-          <Link to={next.fields.slug}>
-            <h2>{next.frontmatter.title}</h2>
-            <h3>Next Project <Arrow size="0.9rem" color={next.frontmatter.primaryColor}/></h3>
-          </Link>
-        </div>
-      </Layout>
-    )
-  }
+                <VisibilitySensor partialVisibility resizeCheck onChange={this.onHeroVisibilityChange}>
+                    <div
+                        className={styles.heroFill}
+                        ref={(header) => {
+                            this.header = header
+                        }}
+                    />
+                </VisibilitySensor>
+                <ProjectTemplate
+                    {...project.frontmatter}
+                    content={project.html}
+                    sections={project.sections}
+                />
+                <div className={styles.next}>
+                    <Link to={next.fields.slug}>
+                        <h2>{next.frontmatter.title}</h2>
+                        <h3>Next Project <Arrow size="0.9rem" color={next.frontmatter.primaryColor}/></h3>
+                    </Link>
+                </div>
+            </Layout>
+        )
+    }
 }
 
 export default Project
@@ -275,7 +275,11 @@ export const ProjectQuery = graphql`
             }
             frontmatter {
                 title
+                subtitle
                 primaryColor
+                hero {
+                    publicURL
+                }
             }
         }
     }

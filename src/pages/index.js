@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 import classnames from "classnames"
 import { graphql, withPrefix } from "gatsby"
 import Scrollbar from "react-scrollbars-custom"
-import { withWindowSizeListener } from "react-window-size-listener"
+import { withWindowSizeListener } from "lib/window-size-listener"
 import anime from "animejs"
 import normalizeWheel from "normalize-wheel"
 
@@ -25,406 +25,402 @@ import { ReactComponent as Cursor } from "../img/cursor.svg"
 
 // import starUrl, { ReactComponent as Star } from '../images/cursor.svg'
 class Index extends Component {
-  static propTypes = {
-    data: PropTypes.object.isRequired,
-    windowSize: PropTypes.shape({
-      windowWidth: PropTypes.number,
-      windowHeight: PropTypes.number,
-    }),
-    transitionStatus: PropTypes.string.isRequired,
-  }
+    static propTypes = {
+        data: PropTypes.object.isRequired,
+        windowSize: PropTypes.shape({
+            windowWidth: PropTypes.number,
+            windowHeight: PropTypes.number,
+        }),
+        transitionStatus: PropTypes.string.isRequired,
+    }
 
-  static defaultProps = {
-    windowSize: {
-      windowWidth: 0,
-      windowHeight: 0,
-    },
-  }
+    static defaultProps = {
+        windowSize: {
+            windowWidth: 0,
+            windowHeight: 0,
+        },
+    }
 
-  state = {
-    projectActive: null,
-    backgroundColor: null,
-    dragging: false,
-    showDragger: false,
-    showHover: false,
-  }
+    state = {
+        projectActive: null,
+        backgroundColor: null,
+        dragging: false,
+        showDragger: false,
+        showHover: false,
+    }
 
-  projects = {}
+    projects = {}
 
-  constructor(props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    this.scrollbars = React.createRef()
-    this.transition = React.createRef()
-    this.cursor = React.createRef()
-  }
+        this.scrollbars = React.createRef()
+        this.transition = React.createRef()
+        this.cursor = React.createRef()
+    }
 
-  componentDidMount() {
-    document.addEventListener("wheel", this.onMouseWheel, { passive: false })
+    componentDidMount() {
+        document.addEventListener("wheel", this.onMouseWheel, { passive: false })
 
-    this.intersectRatio = lteSmallViewport() ? 0.5 : 0.9
-    this.intersects = []
+        this.intersectRatio = lteSmallViewport() ? 0.5 : 0.9
+        this.intersects = []
 
-    this.observer = new IntersectionObserver((entries) => {
-      if (!lteSmallViewport()) {
-        return
-      }
+        this.observer = new IntersectionObserver((entries) => {
+            if (!lteSmallViewport()) {
+                return
+            }
 
-      const { projectActive } = this.state
+            const { projectActive } = this.state
 
-      entries.forEach((entry) => {
-        const index = entry.target.idx ? parseInt(entry.target.idx, 10) : null
+            entries.forEach((entry) => {
+                const index = entry.target.idx ? parseInt(entry.target.idx, 10) : null
 
-        if (
-            entry.intersectionRatio >= this.intersectRatio
-            && !this.intersects.includes(index)
-        ) {
-          this.intersects.push(index)
-        } else if (
-            entry.intersectionRatio < this.intersectRatio
-            && this.intersects.includes(index)
-        ) {
-          this.intersects.splice(this.intersects.indexOf(index), 1)
+                if (
+                    entry.intersectionRatio >= this.intersectRatio
+                    && !this.intersects.includes(index)
+                ) {
+                    this.intersects.push(index)
+                } else if (
+                    entry.intersectionRatio < this.intersectRatio
+                    && this.intersects.includes(index)
+                ) {
+                    this.intersects.splice(this.intersects.indexOf(index), 1)
+                }
+            })
+
+            if (
+                this.intersects.length
+                && this.intersects[this.intersects.length - 1] !== projectActive
+            ) {
+                this.onProjectEnter(this.intersects[this.intersects.length - 1])()
+            } else if (!this.intersects.length) {
+                clearTimeout(this.projectAnimate)
+                this.setState({ projectActive: null })
+            }
+        }, { root: ReactDOM.findDOMNode(this.contentArea), threshold: [this.intersectRatio] })
+
+        Object.entries(this.projects).forEach(([idx, ref]) => {
+            const node = ReactDOM.findDOMNode(ref)
+            node.idx = idx // eslint-disable-line no-param-reassign
+            this.observer.observe(node)
+        })
+        this.observer.observe(ReactDOM.findDOMNode(this.intro))
+        this.observer.observe(ReactDOM.findDOMNode(this.end))
+    }
+
+    componentDidUpdate(prevProps) {
+        const { windowSize: { windowWidth } } = this.props
+        if (prevProps.windowSize.windowWidth !== windowWidth) {
+            this.intersectRatio = lteSmallViewport() ? 0.5 : 0.9
         }
-      })
+    }
 
-      if (
-          this.intersects.length
-          && this.intersects[this.intersects.length - 1] !== projectActive
-      ) {
-        this.onProjectEnter(this.intersects[this.intersects.length - 1])()
-      } else if (!this.intersects.length) {
+    componentWillUnmount() {
+        this.unmounting = true
+        clearTimeout(this.dragEndTimeout)
+        clearTimeout(this.projectAnimate)
+        document.removeEventListener("wheel", this.onMouseWheel, { passive: false })
+        this.observer.disconnect()
+        document.body.style["overflow-x"] = ""
+    }
+
+    animateProjectBackground = async (index) => {
+        if (this.unmounting) {
+            return
+        }
+
+        const { data } = this.props
+        const { projectActive, currentProjectImage, animating } = this.state
+
+        const projects = data.projects.edges
+        if (!animating) {
+            const nextProjectImage = projects[index]
+                ? projects[index].node.frontmatter.hero.publicURL
+                : null
+
+            if (nextProjectImage === currentProjectImage) {
+                return
+            }
+
+            this.setState({ animating: true })
+            const done = await this.transition.current.setImages(
+                currentProjectImage,
+                nextProjectImage,
+            )
+            // The component may unmount between the previous action and this one
+            if (!this.transition.current) {
+                return
+            }
+            await this.transition.current.animateTo(Transition.B)
+            this.setState({
+                animating: false,
+                currentProjectImage: nextProjectImage,
+            }, () => {
+                const { projectActive: currentProjectActive } = this.state
+                if (currentProjectActive !== projectActive) {
+                    this.animateProjectBackground(currentProjectActive)
+                }
+            })
+        }
+    }
+
+    exit = async (opts, node) => {
+        document.body.style["overflow-x"] = "hidden"
+        anime({
+            targets: node,
+            opacity: 0,
+            duration: 1000,
+            delay: 3500,
+            easing: "easeInOutQuad",
+        })
+    }
+
+    isExiting = () => {
+        const { transitionStatus } = this.props
+        return ["exiting", "exited"].includes(transitionStatus)
+    }
+
+    onElementEnter = () => {
+        this.animateProjectBackground(null)
+        this.setState({
+            showHover: true,
+            projectActive: null,
+            backgroundColor: "#23282e",
+        })
+    }
+
+    onElementLeave = () => {
+        this.setState({
+            showHover: false,
+            backgroundColor: null,
+        })
+    }
+
+    onProjectEnter = index => () => {
+        if (this.scrolling || this.isExiting()) {
+            return
+        }
+        this.setState({
+            projectActive: index,
+        })
+        clearTimeout(this.projectAnimate)
+        this.projectAnimate = setTimeout(async () => {
+            this.animateProjectBackground(index)
+        }, 150)
+    }
+
+    onProjectLeave = () => {
+        if (this.isExiting()) {
+            return
+        }
+
         clearTimeout(this.projectAnimate)
         this.setState({ projectActive: null })
-      }
-    }, { root: ReactDOM.findDOMNode(this.contentArea), threshold: [this.intersectRatio] })
-
-    Object.entries(this.projects).forEach(([idx, ref]) => {
-      const node = ReactDOM.findDOMNode(ref)
-      node.idx = idx // eslint-disable-line no-param-reassign
-      this.observer.observe(node)
-    })
-    this.observer.observe(ReactDOM.findDOMNode(this.intro))
-    this.observer.observe(ReactDOM.findDOMNode(this.end))
-  }
-
-  componentDidUpdate(prevProps) {
-    const { windowSize: { windowWidth } } = this.props
-    if (prevProps.windowSize.windowWidth !== windowWidth) {
-      this.intersectRatio = lteSmallViewport() ? 0.5 : 0.9
-    }
-  }
-
-  componentWillUnmount() {
-    this.unmounting = true
-    clearTimeout(this.dragEndTimeout)
-    clearTimeout(this.projectAnimate)
-    document.removeEventListener("wheel", this.onMouseWheel, { passive: false })
-    this.observer.disconnect()
-    document.body.style["overflow-x"] = ""
-  }
-
-  animateProjectBackground = async (index) => {
-    console.log(index)
-    console.log('---')
-    console.log(this.unmounting)
-    if (this.unmounting) {
-      return
     }
 
-    const { data } = this.props
-    const { projectActive, currentProjectImage, animating } = this.state
+    onProjectListEnter = () => {
+        this.setState({ showDragger: true })
+    }
 
-    const projects = data.projects.edges
-    if (!animating) {
-      const nextProjectImage = projects[index]
-          ? projects[index].node.frontmatter.hero.publicURL
-          : null
-
-      if (nextProjectImage === currentProjectImage) {
-        return
-      }
-
-      this.setState({ animating: true })
-      const done = await this.transition.current.setImages(
-          currentProjectImage,
-          nextProjectImage,
-      )
-      console.log(currentProjectImage)
-      // The component may unmount between the previous action and this one
-      if (!this.transition.current) {
-        return
-      }
-      await this.transition.current.animateTo(Transition.B)
-      this.setState({
-        animating: false,
-        currentProjectImage: nextProjectImage,
-      }, () => {
-        const { projectActive: currentProjectActive } = this.state
-        if (currentProjectActive !== projectActive) {
-          this.animateProjectBackground(currentProjectActive)
+    onProjectListLeave = (evt) => {
+        if (this.isExiting()) {
+            return
         }
-      })
-    }
-  }
 
-  exit = async (opts, node) => {
-    document.body.style["overflow-x"] = "hidden"
-    anime({
-      targets: node,
-      opacity: 0,
-      duration: 1000,
-      delay: 3500,
-      easing: "easeInOutQuad",
-    })
-  }
-
-  isExiting = () => {
-    const { transitionStatus } = this.props
-    return ["exiting", "exited"].includes(transitionStatus)
-  }
-
-  onElementEnter = () => {
-    this.animateProjectBackground(null)
-    this.setState({
-      showHover: true,
-      projectActive: null,
-      backgroundColor: "#23282e",
-    })
-  }
-
-  onElementLeave = () => {
-    this.setState({
-      showHover: false,
-      backgroundColor: null,
-    })
-  }
-
-  onProjectEnter = index => () => {
-    if (this.scrolling || this.isExiting()) {
-      return
-    }
-    this.setState({
-      projectActive: index,
-    })
-    clearTimeout(this.projectAnimate)
-    this.projectAnimate = setTimeout(async () => {
-      this.animateProjectBackground(index)
-    }, 150)
-  }
-
-  onProjectLeave = () => {
-    if (this.isExiting()) {
-      return
+        this.onProjectLeave()
+        this.onProjectDragEnd(evt)
+        this.setState({ showDragger: false, projectActive: null })
     }
 
-    clearTimeout(this.projectAnimate)
-    this.setState({ projectActive: null })
-  }
-
-  onProjectListEnter = () => {
-    this.setState({ showDragger: true })
-  }
-
-  onProjectListLeave = (evt) => {
-    if (this.isExiting()) {
-      return
+    onProjectDragStart = (evt) => {
+        this.setState({
+            showDragger: true,
+        })
+        this.dragOrigin = evt.clientX
     }
 
-    this.onProjectLeave()
-    this.onProjectDragEnd(evt)
-    this.setState({ showDragger: false, projectActive: null })
-  }
+    onProjectDrag = (evt) => {
+        const { showDragger } = this.state
+        if (!showDragger) {
+            this.setState({ showDragger: true })
+        }
 
-  onProjectDragStart = (evt) => {
-    this.setState({
-      showDragger: true,
-    })
-    this.dragOrigin = evt.clientX
-  }
-
-  onProjectDrag = (evt) => {
-    const { showDragger } = this.state
-    if (!showDragger) {
-      this.setState({ showDragger: true })
-    }
-
-    this.cursor.current.style.transform = `
+        this.cursor.current.style.transform = `
             translate(
                 calc(${evt.clientX}px - 50%),
                 calc(${evt.clientY}px - 50%)
             )
         `
 
-    if (!this.dragOrigin) {
-      return
+        if (!this.dragOrigin) {
+            return
+        }
+
+        const deltaX = this.dragOrigin - evt.clientX
+
+        const { dragging } = this.state
+        if (Math.abs(deltaX) > 10 && !dragging) {
+            this.setState({ dragging: true })
+        } else if (!dragging) {
+            return
+        }
+
+        evt.preventDefault()
+
+        const currentScrollDelta = this.scrollbars.current.scrollLeft
+        this.scrollbars.current.scrollTo(
+            Math.min(
+                Math.max(0, currentScrollDelta + deltaX),
+                this.scrollbars.current.scrollWidth,
+            ),
+        )
+
+        this.dragOrigin = evt.clientX
     }
 
-    const deltaX = this.dragOrigin - evt.clientX
-
-    const { dragging } = this.state
-    if (Math.abs(deltaX) > 10 && !dragging) {
-      this.setState({ dragging: true })
-    } else if (!dragging) {
-      return
+    onProjectDragEnd = () => {
+        this.dragEndTimeout = setTimeout(() => {
+            this.setState({ dragging: false })
+            this.dragOrigin = null
+        }, 100)
     }
 
-    evt.preventDefault()
-
-    const currentScrollDelta = this.scrollbars.current.scrollLeft
-    this.scrollbars.current.scrollTo(
-        Math.min(
-            Math.max(0, currentScrollDelta + deltaX),
-            this.scrollbars.current.scrollWidth,
-        ),
-    )
-
-    this.dragOrigin = evt.clientX
-  }
-
-  onProjectDragEnd = () => {
-    this.dragEndTimeout = setTimeout(() => {
-      this.setState({ dragging: false })
-      this.dragOrigin = null
-    }, 100)
-  }
-
-  checkDragging = (evt) => {
-    const { dragging } = this.state
-    if (dragging) {
-      evt.preventDefault()
+    checkDragging = (evt) => {
+        const { dragging } = this.state
+        if (dragging) {
+            evt.preventDefault()
+        }
     }
-  }
 
-  onMouseWheel = (evt) => {
-    evt.preventDefault()
-    evt.stopPropagation()
-    const norm = normalizeWheel(evt)
+    onMouseWheel = (evt) => {
+        evt.preventDefault()
+        evt.stopPropagation()
+        const norm = normalizeWheel(evt)
 
-    const currentScrollDelta = this.scrollbars.current.scrollLeft
-    const axis = Math.abs(norm.pixelX) > Math.abs(norm.pixelY) ? "pixelX" : "pixelY"
-    // this.scrollbars.current.scrollTo(0, currentScrollDelta + norm[axis])
-    this.scrollbars.current.scrollTo(currentScrollDelta + norm[axis])
-  }
+        const currentScrollDelta = this.scrollbars.current.scrollLeft
+        const axis = Math.abs(norm.pixelX) > Math.abs(norm.pixelY) ? "pixelX" : "pixelY"
+        // this.scrollbars.current.scrollTo(0, currentScrollDelta + norm[axis])
+        this.scrollbars.current.scrollTo(currentScrollDelta + norm[axis])
+    }
 
-  render() {
-    const { data, windowSize: { windowWidth, windowHeight } } = this.props
-    const {
-      projectActive, showDragger, showHover, dragging, backgroundColor,
-    } = this.state
+    render() {
+        const { data, windowSize: { windowWidth, windowHeight } } = this.props
+        const {
+            projectActive, showDragger, showHover, dragging, backgroundColor,
+        } = this.state
 
-    const projects = data.projects.edges
+        const projects = data.projects.edges
 
-    return (
-        <Layout hideFooter outerClassName={styles.outer}>
-          {/*<SEO title="Digital & Web Product Studio in Brooklyn, NYC" />*/}
+        return (
+            <Layout hideFooter outerClassName={styles.outer}>
+                {/*<SEO title="Digital & Web Product Studio in Brooklyn, NYC" />*/}
 
-          <div
-              ref={this.cursor}
-              className={classnames(
-                  styles.cursor, {
-                    [styles.show]: showDragger,
-                    [styles.hover]: !dragging && (projectActive !== null || showHover),
-                  },
-              )}
-          >
-            <Cursor/>
-          </div>
-          <div
-              className={styles.work}
-              onMouseDown={this.onProjectDragStart}
-              onMouseMove={this.onProjectDrag}
-              onMouseUp={this.onProjectDragEnd}
-              onMouseEnter={isTouchDevice() ? null : this.onProjectListEnter}
-              onMouseLeave={isTouchDevice() ? null : this.onProjectListLeave}
-              onDragStart={(evt) => {
-                evt.preventDefault()
-                return false
-              }}
-              draggable={false}
-              ref={(ref) => {
-                this.contentArea = ref
-              }}
-              role="presentation"
-          >
-            <Scrollbar
-                noDefaultStyles
-                className={styles.scroller}
-                momentum={false}
-                noScrollY={!lteSmallViewport()}
-                trackYProps={{
-                  renderer: props => {
-                    const { elementRef, ...restProps } = props
-                    return <div ref={elementRef} {...restProps} className={styles.vTrack}/>
-                  },
-                }}
-                trackXProps={{
-                  renderer: props => {
-                    const { elementRef, ...restProps } = props
-                    return <div
-                        ref={elementRef}
-                        {...restProps}
-                        className={styles.hTrack}
-                        onMouseEnter={() => {
-                          this.setState({ showDragger: false })
+                <div
+                    ref={this.cursor}
+                    className={classnames(
+                        styles.cursor, {
+                            [styles.show]: showDragger,
+                            [styles.hover]: !dragging && (projectActive !== null || showHover),
+                        },
+                    )}
+                >
+                    <Cursor/>
+                </div>
+                <div
+                    className={styles.work}
+                    onMouseDown={this.onProjectDragStart}
+                    onMouseMove={this.onProjectDrag}
+                    onMouseUp={this.onProjectDragEnd}
+                    onMouseEnter={isTouchDevice() ? null : this.onProjectListEnter}
+                    onMouseLeave={isTouchDevice() ? null : this.onProjectListLeave}
+                    onDragStart={(evt) => {
+                        evt.preventDefault()
+                        return false
+                    }}
+                    draggable={false}
+                    ref={(ref) => {
+                        this.contentArea = ref
+                    }}
+                    role="presentation"
+                >
+                    <Scrollbar
+                        noDefaultStyles
+                        className={styles.scroller}
+                        momentum={false}
+                        noScrollY={!lteSmallViewport()}
+                        trackYProps={{
+                            renderer: props => {
+                                const { elementRef, ...restProps } = props
+                                return <div ref={elementRef} {...restProps} className={styles.vTrack}/>
+                            },
                         }}
-                        onMouseLeave={() => {
-                          this.setState({ showDragger: true })
+                        trackXProps={{
+                            renderer: props => {
+                                const { elementRef, ...restProps } = props
+                                return <div
+                                    ref={elementRef}
+                                    {...restProps}
+                                    className={styles.hTrack}
+                                    onMouseEnter={() => {
+                                        this.setState({ showDragger: false })
+                                    }}
+                                    onMouseLeave={() => {
+                                        this.setState({ showDragger: true })
+                                    }}
+                                />
+                                // return <div ref={elementRef} {...restProps} className={styles.vTrack}/>
+                            },
                         }}
-                    />
-                    // return <div ref={elementRef} {...restProps} className={styles.vTrack}/>
-                  },
-                }}
 
-                thumbXProps={{
-                  renderer: props => {
-                    const { elementRef, ...resetProps } = props
-                    return <div ref={elementRef} {...resetProps} className={styles.hThumb}/>
-                  },
-                }}
+                        thumbXProps={{
+                            renderer: props => {
+                                const { elementRef, ...resetProps } = props
+                                return <div ref={elementRef} {...resetProps} className={styles.hThumb}/>
+                            },
+                        }}
 
-                wrapperProps={{
-                  renderer: props => {
-                    const { elementRef, ...restProps } = props
-                    return <div
-                        ref={elementRef}
-                        {...restProps}
-                        className={styles.scrollerWrapper}
-                    />
-                  },
-                }}
-                contentProps={{
-                  renderer: props => {
-                    const { elementRef, ...restProps } = props
+                        wrapperProps={{
+                            renderer: props => {
+                                const { elementRef, ...restProps } = props
+                                return <div
+                                    ref={elementRef}
+                                    {...restProps}
+                                    className={styles.scrollerWrapper}
+                                />
+                            },
+                        }}
+                        contentProps={{
+                            renderer: props => {
+                                const { elementRef, ...restProps } = props
 
-                    return <div
-                        ref={elementRef}
-                        {...restProps}
-                        className={classnames(styles.scrollerContent, {
-                          [styles.hasActive]: projectActive !== null,
-                        })}
-                    />
-                  },
-                }}
-                key="scrollbars"
-                // ref={ref => (this.scrollbars = ref)}
-                ref={this.scrollbars}
-            >
-              <div
-                  className={classnames(
-                      styles.project,
-                      styles.intro,
-                      {
-                        [styles.exiting]: this.isExiting(),
-                      },
-                  )}
-                  ref={(intro) => {
-                    this.intro = intro
-                  }}
-              >
-                <div className={styles.wrap}>
-                  <h1>
-                    {/*
+                                return <div
+                                    ref={elementRef}
+                                    {...restProps}
+                                    className={classnames(styles.scrollerContent, {
+                                        [styles.hasActive]: projectActive !== null,
+                                    })}
+                                />
+                            },
+                        }}
+                        key="scrollbars"
+                        // ref={ref => (this.scrollbars = ref)}
+                        ref={this.scrollbars}
+                    >
+                        <div
+                            className={classnames(
+                                styles.project,
+                                styles.intro,
+                                {
+                                    [styles.exiting]: this.isExiting(),
+                                },
+                            )}
+                            ref={(intro) => {
+                                this.intro = intro
+                            }}
+                        >
+                            <div className={styles.wrap}>
+                                <h1>
+                                    {/*
                   <strong
                     className="styles-module--brush--3buen styles-module--brush3--rPKJB styles-module--animate--3lXLb">
                     <svg viewBox="0 0 363 91">
@@ -439,142 +435,142 @@ class Index extends Component {
                             stroke-width="22" fill="none" stroke="#dc4133"></path>
                     </svg>
                     <span>product</span></strong>*/}
-                    {/*Planetary is a digital product studio*/}
-                    {/*born in Brooklyn, and based globally.*/}
-                    采撷是一家技术服务公司，总部位于北京。
-                  </h1>
-                  <div className={styles.bottom}>
-                    <Link
-                        to="/about"
-                        onMouseEnter={this.onElementEnter}
-                        onMouseLeave={this.onElementLeave}
-                    >
-                      关于我们
-                      {/*About Us*/}
-                      <Arrow size="1.5rem" color="red" className={styles.arrow}/>
-                    </Link>
-                    <h4>滑动浏览更多</h4>
-                  </div>
-                </div>
-              </div>
+                                    {/*Planetary is a digital product studio*/}
+                                    {/*born in Brooklyn, and based globally.*/}
+                                    采撷是一家技术服务公司，总部位于北京。
+                                </h1>
+                                <div className={styles.bottom}>
+                                    <Link
+                                        to="/about"
+                                        onMouseEnter={this.onElementEnter}
+                                        onMouseLeave={this.onElementLeave}
+                                    >
+                                        关于我们
+                                        {/*About Us*/}
+                                        <Arrow size="1.5rem" color="red" className={styles.arrow}/>
+                                    </Link>
+                                    <h4>滑动浏览更多</h4>
+                                </div>
+                            </div>
+                        </div>
 
-              {projects.map((project, idx) => (
-                  <div
-                      key={`project${idx}`}
-                      className={classnames(styles.project, {
-                        [styles.active]: projectActive === idx,
-                        [styles.inactive]: projectActive !== null
-                        && projectActive !== idx,
-                        [styles.exiting]: this.isExiting(),
-                      })}
-                      ref={(prj) => {
-                        this.projects[idx] = prj
-                      }}
-                  >
-                    <Link
-                        to={project.node.fields.slug}
-                        onClick={this.checkDragging}
-                        className={styles.projectLink}
-                        onMouseEnter={
-                          !isTouchDevice() ? this.onProjectEnter(idx) : null
-                        }
-                        onMouseLeave={
-                          !isTouchDevice() ? this.onProjectLeave : null
-                        }
-                        exit={{
-                          trigger: ({ exit, node }) => this.exit(exit, node),
-                          length: 5,
-                          zIndex: 2,
-                        }}
-                        entry={{
-                          length: 5,
-                        }}
-                    >
-                      <h3><span>{project.node.frontmatter.subtitle}</span></h3>
-                      <h2><span>{project.node.frontmatter.title}</span></h2>
-                      <p><span>{project.node.frontmatter.summary}</span></p>
-                      <h4><span>案例详情 <Arrow color="red"/></span></h4>
-                    </Link>
-                  </div>
-              ))}
-              <div
-                  className={classnames(
-                      styles.project,
-                      styles.end,
-                      {
-                        [styles.exiting]: this.isExiting(),
-                      },
-                  )}
-                  ref={(end) => {
-                    this.end = end
-                  }}
-              >
-                <div className={styles.wrap}>
-                  <Link
-                      to="/insights"
-                      onMouseEnter={this.onElementEnter}
-                      onMouseLeave={this.onElementLeave}
-                  >
-                    <span>行业观点</span>
-                  </Link>
-                  <Link
-                      to="/contact"
-                      onMouseEnter={this.onElementEnter}
-                      onMouseLeave={this.onElementLeave}
-                  >
-                    <span>联系我们</span>
-                  </Link>
+                        {projects.map((project, idx) => (
+                            <div
+                                key={`project${idx}`}
+                                className={classnames(styles.project, {
+                                    [styles.active]: projectActive === idx,
+                                    [styles.inactive]: projectActive !== null
+                                    && projectActive !== idx,
+                                    [styles.exiting]: this.isExiting(),
+                                })}
+                                ref={(prj) => {
+                                    this.projects[idx] = prj
+                                }}
+                            >
+                                <Link
+                                    to={project.node.fields.slug}
+                                    onClick={this.checkDragging}
+                                    className={styles.projectLink}
+                                    onMouseEnter={
+                                        !isTouchDevice() ? this.onProjectEnter(idx) : null
+                                    }
+                                    onMouseLeave={
+                                        !isTouchDevice() ? this.onProjectLeave : null
+                                    }
+                                    exit={{
+                                        trigger: ({ exit, node }) => this.exit(exit, node),
+                                        length: 5,
+                                        zIndex: 2,
+                                    }}
+                                    entry={{
+                                        length: 5,
+                                    }}
+                                >
+                                    <h3><span>{project.node.frontmatter.subtitle}</span></h3>
+                                    <h2><span>{project.node.frontmatter.title}</span></h2>
+                                    <p><span>{project.node.frontmatter.summary}</span></p>
+                                    <h4><span>案例详情 <Arrow color="red"/></span></h4>
+                                </Link>
+                            </div>
+                        ))}
+                        <div
+                            className={classnames(
+                                styles.project,
+                                styles.end,
+                                {
+                                    [styles.exiting]: this.isExiting(),
+                                },
+                            )}
+                            ref={(end) => {
+                                this.end = end
+                            }}
+                        >
+                            <div className={styles.wrap}>
+                                <Link
+                                    to="/insights"
+                                    onMouseEnter={this.onElementEnter}
+                                    onMouseLeave={this.onElementLeave}
+                                >
+                                    <span>行业观点</span>
+                                </Link>
+                                <Link
+                                    to="/contact"
+                                    onMouseEnter={this.onElementEnter}
+                                    onMouseLeave={this.onElementLeave}
+                                >
+                                    <span>联系我们</span>
+                                </Link>
+                            </div>
+                        </div>
+                    </Scrollbar>
                 </div>
-              </div>
-            </Scrollbar>
-          </div>
-          <div
-              className={classnames(styles.background, this.isExiting() && styles.exiting)}
-              style={{
-                background:
-                    backgroundColor || (
-                        projectActive !== null
-                        && projects[projectActive].node.frontmatter.primaryColor
-                    ),
-                opacity: backgroundColor !== null || projectActive !== null ? 1 : 0,
-              }}
-          >
-            <Transition
-                width={windowWidth || 0}
-                height={windowHeight || 0}
-                ref={this.transition}
-                displacementImage={withPrefix("assets/clouds.jpg")}
-            />
-          </div>
-        </Layout>
-    )
-  }
+                <div
+                    className={classnames(styles.background, this.isExiting() && styles.exiting)}
+                    style={{
+                        background:
+                            backgroundColor || (
+                                projectActive !== null
+                                && projects[projectActive].node.frontmatter.primaryColor
+                            ),
+                        opacity: backgroundColor !== null || projectActive !== null ? 1 : 0,
+                    }}
+                >
+                    <Transition
+                        width={windowWidth || 0}
+                        height={windowHeight || 0}
+                        ref={this.transition}
+                        displacementImage={withPrefix("assets/clouds.jpg")}
+                    />
+                </div>
+            </Layout>
+        )
+    }
 }
 
 export default withWindowSizeListener(Index)
 
 export const pageQuery = graphql`
-  query WorkQuery {
-    projects: allMarkdownRemark(
-      sort: { order: ASC, fields: [frontmatter___sort] },
-      filter: { frontmatter: { templateKey: { eq: "project" } }}
-    ){
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            subtitle
-            summary
-            primaryColor
-            hero {
-              publicURL
+    query WorkQuery {
+        projects: allMarkdownRemark(
+            sort: { order: ASC, fields: [frontmatter___sort] },
+            filter: { frontmatter: { templateKey: { eq: "project" } }}
+        ){
+            edges {
+                node {
+                    fields {
+                        slug
+                    }
+                    frontmatter {
+                        title
+                        subtitle
+                        summary
+                        primaryColor
+                        hero {
+                            publicURL
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
 `
