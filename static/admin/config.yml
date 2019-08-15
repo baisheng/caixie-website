@@ -89,16 +89,6 @@ collections:
               - {label: 交错位置 html 内容, name: staggeredCopyHtml, widget: string}
               - {label: 交错起始位置, name: staggeredStart, widget: select, options: ["left", "center", "right"]}
               - {label: 图集, name: images, widget: list, field: {label: Image, name: image, widget: image}}
-          - label: "Carousel"
-            name: "carousel"
-            widget: object
-            fields:
-              - {label: Header, name: header, widget: string, default: "Image Gallery"}
-              - {label: Template, name: template, widget: string, default: "carousel.html"}
-              - label: Images
-                name: images
-                widget: list
-                field: {label: Image, name: image, widget: image}
   - name: "pages"
     label: "Pages"
     files:
@@ -115,27 +105,6 @@ collections:
           - {label: Description, name: description, widget: string}
           - {label: Intro, name: intro, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Blurbs, name: blurbs, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Text, name: text, widget: text}]}]}
           - {label: Main, name: main, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}, {label: Image1, name: image1, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image2, name: image2, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}, {label: Image3, name: image3, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Alt, name: alt, widget: string}]}]}
-          - label: "Home Section"
-            name: "sections"
-            widget: "list"
-            types:
-              - label: "Carousel"
-                name: "carousel"
-                widget: object
-                fields:
-                  - {label: Header, name: header, widget: string, default: "Image Gallery"}
-                  - {label: Template, name: template, widget: string, default: "carousel.html"}
-                  - label: Images
-                    name: images
-                    widget: list
-                    field: {label: Image, name: image, widget: image}
-              - label: "Spotlight"
-                name: "spotlight"
-                widget: object
-                fields:
-                  - {label: Header, name: header, widget: string, default: "Spotlight"}
-                  - {label: Template, name: template, widget: string, default: "spotlight.html"}
-                  - {label: Text, name: text, widget: text, default: "Hello World"}
       - file: "src/pages/about/index.md"
         label: "About"
         name: "about"
