@@ -9,7 +9,9 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     "gatsby-plugin-postcss",
+    "gatsby-plugin-css-customs",
     'gatsby-plugin-sass',
+    `gatsby-plugin-transition-link`,
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
@@ -60,6 +62,17 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-svgr",
+      options: {
+        prettier: true,         // use prettier to format JS code output (default)
+        svgo: true,             // use svgo to optimize SVGs (default)
+        svgoConfig: {
+          removeViewBox: true, // remove viewBox when possible (default)
+          cleanupIDs: true,    // remove unused IDs and minify remaining IDs (default)
+        },
       },
     },
     {

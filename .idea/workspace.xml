@@ -2,8 +2,80 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ce1e689-946e-4be1-8654-f018a784a261" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/gatsby-node-bak.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/Aller_Bd.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/Aller_Bd.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/Aller_Bd.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/Aller_Lt.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/Aller_Lt.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/Aller_Lt.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/Helvetica_Bold.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/Helvetica_Bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/Helvetica_Bold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/fontello.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/fontello.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/fontello.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/fontello.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/fontello.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-500.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-500.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-500.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-500.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-600.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-600.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-600.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-600.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-700.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-700.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-700.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-700.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-900.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-900.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-900.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-900.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fonts/noto-serif-sc-v2-latin_chinese-simplified-regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/Carousel/styles.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/Image/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/Image/styles.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/ImageGrid/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/ImageGrid/styles.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/Quote/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/Quote/styles.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/Stats/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/Stats/styles.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/StyleGuide/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/StyleGuide/styles.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/Text/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/modules/Text/styles.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/templates/project/styles.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/assets/clouds.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/assets/transparent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/assets/world_map.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gatsby-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/gatsby-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gatsby-node.js" beforeDir="false" afterPath="$PROJECT_DIR$/gatsby-node.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/postcss.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cms/cms.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/cms/cms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BlogRoll.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/blog/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/blog/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/project/播客小程序.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/project/mpcast.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/about-page.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/blog-post.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/index-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/index-page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/product-page.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/tags.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/admin/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/static/admin/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,17 +90,22 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="settings.editor.selected.configurable" value="debugger.dataViews" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/styles" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/templates" />
     </key>
@@ -55,7 +132,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565746600677</updated>
-      <workItem from="1565746601789" duration="15707000" />
+      <workItem from="1565746601789" duration="32181000" />
     </task>
     <servers />
   </component>

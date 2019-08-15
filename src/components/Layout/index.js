@@ -12,7 +12,7 @@ import {lteSmallViewport} from 'lib/media-query';
 // import Nav from 'components/Nav';
 import Footer from 'components/Footer';
 
-import 'styles/global.css';
+import 'styles/global.module.css';
 
 import styles from './styles.module.css';
 
