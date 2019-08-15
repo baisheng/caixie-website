@@ -53,9 +53,9 @@ collections:
             name: "text"
             widget: object
             fields:
-              - {label: 标题, name: header, widget: string, required: false}
+              - {label: 标题, name: header, widget: string}
               - {label: 主内容, name: body, widget: markdown}
-              - {label: 次要内容, name: bodySecondary, widget: markdown, required: false}
+              - {label: 次要内容, name: bodySecondary, widget: markdown}
           - label: "引用"
             name: "quote"
             widget: object
