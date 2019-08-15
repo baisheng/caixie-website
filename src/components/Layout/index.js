@@ -15,7 +15,7 @@ import Footer from 'components/Footer';
 import 'styles/global.module.css';
 
 import styles from './styles.module.css';
-
+import '../tailwind.css'
 const handleWindow = () => {
   const body = document.querySelector('body');
 

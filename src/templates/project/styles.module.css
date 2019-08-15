@@ -36,7 +36,8 @@
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     transition: opacity .5s ease;
-    opacity: 0
+    opacity: 0;
+    width: 100%
 }
 
 .hero.entered {

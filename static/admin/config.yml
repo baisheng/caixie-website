@@ -86,7 +86,7 @@ collections:
               - {label: 全宽, name: "fullWidth", widget: boolean, required: false}
               - {label: 边框颜色, name: frameColor, widget: string, required: false}
               - {label: 交错显示, name: staggered, widget: boolean, required: false}
-              - {label: 交错位置 html 内容, name: staggeredCopyHtml, widget: string, required: false}
+              - {label: 交错位置 html 内容, name: staggeredCopyHtml, widget: markdown, required: false}
               - {label: 交错起始位置, name: staggeredStart, widget: select, options: ["left", "center", "right"], required: false}
               - {label: 图集, name: images, widget: list, field: {label: Image, name: image, widget: image}}
   - name: "pages"

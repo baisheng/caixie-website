@@ -1,7 +1,7 @@
 /* global window IntersectionObserver */
-import React, { Component, Fragment } from "react"
+import React, {Component, Fragment} from "react"
 import PropTypes from "prop-types"
-import { graphql } from "gatsby"
+import {graphql} from "gatsby"
 import Layout from "components/Layout"
 import classnames from "classnames"
 import chroma from "chroma-js"
@@ -9,11 +9,11 @@ import VisibilitySensor from "react-visibility-sensor"
 
 import Link from "components/Link"
 // import SEO from 'components/SEO';
-import { supportsWebMAlpha } from "lib/feature-check"
+import {supportsWebMAlpha} from "lib/feature-check"
 
 // This comes first so that each module's css below loads after this css
 import Arrow from "components/Arrow"
-import { customProperties } from "styles/variables.module.css"
+import {customProperties} from "styles/variables.module.css"
 
 import Text from "./modules/Text"
 import Stats from "./modules/Stats"
@@ -58,25 +58,25 @@ const ProjectTemplate = ({
         </div>
 
         {/* SVG for list bullets */}
-        {/*    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style={{display: 'none'}}>
-      <symbol viewBox="0 0 11 16" id="bullet">
-        <g transform="translate(1, -9)" fillRule="nonzero">
-          <path
-            d="M-9.76996262e-14,9 L-9.76996262e-14,19.9259596 L8.7407677,19.9259596 M4.60765264,15.0207133 L9.34530199,20.0103566 L4.60765264,25"
-            fill="none"
-            strokeWidth="1"
-            stroke={
-              chroma.contrast(
-                customProperties['--c--page-background'],
-                primaryColor,
-              ) < 4.5
-                ? customProperties['--c--text']
-                : primaryColor
-            }
-          />
-        </g>
-      </symbol>
-    </svg>*/}
+{/*        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style={{display: 'none'}}>
+            <symbol viewBox="0 0 11 16" id="bullet">
+                <g transform="translate(1, -9)" fillRule="nonzero">
+                    <path
+                        d="M-9.76996262e-14,9 L-9.76996262e-14,19.9259596 L8.7407677,19.9259596 M4.60765264,15.0207133 L9.34530199,20.0103566 L4.60765264,25"
+                        fill="none"
+                        strokeWidth="1"
+                        stroke={
+                            chroma.contrast(
+                                customProperties['--c--page-background'],
+                                primaryColor,
+                            ) < 4.5
+                                ? customProperties['--c--text']
+                                : primaryColor
+                        }
+                    />
+                </g>
+            </symbol>
+        </svg>*/}
     </Fragment>
 )
 
@@ -85,7 +85,7 @@ ProjectTemplate.propTypes = {
     sections: PropTypes.array.isRequired,
 }
 
-export { ProjectTemplate }
+export {ProjectTemplate}
 
 class Project extends Component {
     static propTypes = {
@@ -106,9 +106,9 @@ class Project extends Component {
             supportsWebMAlpha((isSupported) => {
                 if (!isSupported) {
                     if (this.hasMounted) {
-                        this.setState({ useApngFallback: true })
+                        this.setState({useApngFallback: true})
                     } else {
-                        this.state = { ...this.state, useApngFallback: true }
+                        this.state = {...this.state, useApngFallback: true}
                     }
                 }
             })
@@ -136,41 +136,41 @@ class Project extends Component {
             // ) {
             //   this.hero.replay();
             // }
-        }, { threshold: [0, 0.6] })
+        }, {threshold: [0, 0.6]})
 
         this.observer.observe(this.header)
 
-        this.setState({ entered: true })
+        this.setState({entered: true})
     }
 
     componentDidUpdate(prevProps) {
-        const { transitionStatus: prevTransitionStatus } = prevProps
-        const { transitionStatus } = this.props
+        const {transitionStatus: prevTransitionStatus} = prevProps
+        const {transitionStatus} = this.props
 
         if (prevTransitionStatus !== transitionStatus
             && ["exiting", "exited"].includes(transitionStatus)
         ) {
             // eslint-disable-next-line react/no-did-update-set-state
-            this.setState({ entered: false })
+            this.setState({entered: false})
         }
     }
 
     componentWillUnmount() {
-        this.setState({ entered: false })
+        this.setState({entered: false})
         this.observer.disconnect()
     }
 
     onHeroVisibilityChange = (visible) => {
-        this.setState({ hideHeader: !visible })
+        this.setState({hideHeader: !visible})
     }
 
     render() {
         const {
-            data: { project, next },
+            data: {project, next},
             transitionStatus,
         } = this.props
-        const { hideHeader, entered, useApngFallback } = this.state
-        const { title, workType } = project.frontmatter
+        const {hideHeader, entered, useApngFallback} = this.state
+        const {title, workType} = project.frontmatter
 
         // const heroName = title.match(/[a-z0-9]+/gi)
         //   .map(word => word.charAt(0).toUpperCase() + word.substr(1).toLowerCase())
