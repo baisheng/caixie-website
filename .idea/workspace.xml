@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ce1e689-946e-4be1-8654-f018a784a261" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/gatsby-browser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/window-size-listener.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gatsby-node.js" beforeDir="false" afterPath="$PROJECT_DIR$/gatsby-node.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer/styles.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Nav/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Nav/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/404.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/404.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/2016-12-17-making-sense-of-the-scaas-new-flavor-wheel.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/2017-01-04-a-beginners-guide-to-brewing-with-chemex.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/2017-01-04-just-in-small-batch-of-jamaican-blue-mountain-in-store-next-week.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/blog/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/project/mpcast.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/project/mpcast.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/tags/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/project/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/project/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/admin/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/static/admin/config.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565746600677</updated>
-      <workItem from="1565746601789" duration="42442000" />
+      <workItem from="1565746601789" duration="43223000" />
     </task>
     <servers />
   </component>
