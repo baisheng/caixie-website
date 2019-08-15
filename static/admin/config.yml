@@ -38,10 +38,10 @@ collections:
     fields:
       - {label: "Template Key", name: "templateKey", widget: "hidden", default: "project"}
       - {label: "排序", name: "sort", widget: "number"}
-      - {label: "slug", name: "slug", widget: "string"}
+      - {label: "名称标识", name: "name", widget: "string"}
       - {label: "标题", name: "title", widget: "string"}
       - {label: "副标题", name: "subtitle", widget: "string"}
-      - {label: "摘要", name: "summary", widget: "string"}
+      - {label: "摘要", name: "summary", widget: "text"}
       - {label: "工作类别", name: "workType", widget: "list"}
       - {label: "主色", name: "primaryColor", widget: "string"}
       - {label: "封面图", name: "hero", widget: object, fields: [{label: 图片地址, name: publicURL, widget: string}]}
@@ -68,7 +68,7 @@ collections:
             fields:
               - {label: 图片, name: image, widget: image}
               - {label: 描述, name: alt, widgte: string}
-          - label: "Stats"
+          - label: "统计数据"
             name: "stats"
             widget: object
             fields:
@@ -82,23 +82,13 @@ collections:
             name: "imagegrid"
             widget: object
             fields:
-              - {label: 列, name: "columns", widget: number}
-              - {label: 全宽, name: "fullWidth", widget: boolean}
-              - {label: 边框颜色, name: frameColor, widget: string}
-              - {label: 交错显示, name: staggered, widget: boolean}
-              - {label: 交错位置 html 内容, name: staggeredCopyHtml, widget: string}
-              - {label: 交错起始位置, name: staggeredStart, widget: select, options: ["left", "center", "right"]}
+              - {label: 列, name: "columns", widget: number, required: false}
+              - {label: 全宽, name: "fullWidth", widget: boolean, required: false}
+              - {label: 边框颜色, name: frameColor, widget: string, required: false}
+              - {label: 交错显示, name: staggered, widget: boolean, required: false}
+              - {label: 交错位置 html 内容, name: staggeredCopyHtml, widget: string, required: false}
+              - {label: 交错起始位置, name: staggeredStart, widget: select, options: ["left", "center", "right"], required: false}
               - {label: 图集, name: images, widget: list, field: {label: Image, name: image, widget: image}}
-          - label: "Carousel"
-            name: "carousel"
-            widget: object
-            fields:
-              - {label: Header, name: header, widget: string, default: "Image Gallery"}
-              - {label: Template, name: template, widget: string, default: "carousel.html"}
-              - label: Images
-                name: images
-                widget: list
-                field: {label: Image, name: image, widget: image}
   - name: "pages"
     label: "Pages"
     files:
